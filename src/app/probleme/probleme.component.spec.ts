@@ -52,4 +52,10 @@ import { ProblemeComponent } from './probleme.component';
     let errors = prenom.errors || {};
     expect(errors['minlength']).toBeFalsy();
   });
+  it('champ prenom valide avec 2 espaces et 1 caractères', ()=> {
+    let prenom = component.problemeForm.get('prenom');
+    prenom.setValue(' '.repeat(2)+'a');
+    let errors = prenom.errors || {};
+    expect(errors['minlength']).toBeFalsy();
+  });
 });
