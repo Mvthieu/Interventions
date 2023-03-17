@@ -28,4 +28,10 @@ import { ProblemeComponent } from './probleme.component';
     let errors = prenom.errors || {};
     expect(errors['minlength']).toBeTruthy();
   });
+  it('champ prenom valide avec 3 caractères', ()=> {
+    let prenom = component.problemeForm.get('prenom');
+    prenom.setValue('a'.repeat(3));
+    let errors = prenom.errors || {};
+    expect(errors['minlength']).toBeFalsy();
+  });
 });
