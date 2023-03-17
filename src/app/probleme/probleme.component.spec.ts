@@ -40,4 +40,10 @@ import { ProblemeComponent } from './probleme.component';
     let errors = prenom.errors || {};
     expect(errors['minlength']).toBeFalsy();
   });
+  it('champ prenom invalide avec aucune valeur', ()=> {
+    let prenom = component.problemeForm.get('prenom');
+    prenom.setValue('');
+    let errors = prenom.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
 });
