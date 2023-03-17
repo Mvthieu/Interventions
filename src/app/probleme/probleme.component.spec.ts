@@ -46,4 +46,10 @@ import { ProblemeComponent } from './probleme.component';
     let errors = prenom.errors || {};
     expect(errors['required']).toBeTruthy();
   });
+  it('champ prenom valide avec 10 espaces', ()=> {
+    let prenom = component.problemeForm.get('prenom');
+    prenom.setValue(' '.repeat(10));
+    let errors = prenom.errors || {};
+    expect(errors['minlength']).toBeFalsy();
+  });
 });
