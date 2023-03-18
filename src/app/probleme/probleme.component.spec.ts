@@ -24,19 +24,19 @@ import { ProblemeComponent } from './probleme.component';
     let prenom = component.problemeForm.get('prenom');
     prenom.setValue('a'.repeat(2));
     let errors = prenom.errors || {};
-    expect(errors['minlength']).toBeTruthy();
+    expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   });
   it('#2 champ prenom valide avec 3 caractères', ()=> {
     let prenom = component.problemeForm.get('prenom');
     prenom.setValue('a'.repeat(3));
     let errors = prenom.errors || {};
-    expect(errors['minlength']).toBeFalsy();
+    expect(errors['nbreCaracteresInsuffisant']).toBeFalsy();
   });
   it('#3 champ prenom valide avec 200 caractères', ()=> {
     let prenom = component.problemeForm.get('prenom');
     prenom.setValue('a'.repeat(200));
     let errors = prenom.errors || {};
-    expect(errors['minlength']).toBeFalsy();
+    expect(errors['nbreCaracteresInsuffisant']).toBeFalsy();
   });
   it('#4 champ prenom invalide avec aucune valeur', ()=> {
     let prenom = component.problemeForm.get('prenom');
@@ -44,16 +44,16 @@ import { ProblemeComponent } from './probleme.component';
     let errors = prenom.errors || {};
     expect(errors['required']).toBeTruthy();
   });
-  it('#5 champ prenom valide avec 10 espaces', ()=> {
+  it('#5 champ prenom invalide avec 10 espaces', ()=> {
     let prenom = component.problemeForm.get('prenom');
     prenom.setValue(' '.repeat(10));
     let errors = prenom.errors || {};
-    expect(errors['minlength']).toBeFalsy();
+    expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   });
-  it('#6 champ prenom valide avec 2 espaces et 1 caractères', ()=> {
+  it('#6 champ prenom invalide avec 2 espaces et 1 caractères', ()=> {
     let prenom = component.problemeForm.get('prenom');
     prenom.setValue(' '.repeat(2)+'a');
     let errors = prenom.errors || {};
-    expect(errors['minlength']).toBeFalsy();
+    expect(errors['nbreCaracteresInsuffisant']).toBeTruthy();
   });
 });
