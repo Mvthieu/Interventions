@@ -37,6 +37,7 @@
                 }"
               />
             </div>
+
             <span
               class="form-text"
               *ngIf="
@@ -50,9 +51,102 @@
                   Merci de saisir votre prénom.
                 </small>
               </span>
-              <span *ngIf="problemeForm.get('prenom').errors['nbreCaracteresInsuffisant']">
+              <span
+                *ngIf="
+                  problemeForm.get('prenom').errors['nbreCaracteresInsuffisant']
+                "
+              >
                 <small class="text-muted">
                   Veuillez entrer plus de caractères.
+                </small>
+              </span>
+            </span>
+          </div>
+          <!-- Zone de texte NOM -->
+          <div class="form-group row">
+            <label for="nomId" class="col-md-2 col-form-label text-right"
+              >Nom :</label
+            >
+            <div class="col-md-10">
+              <input
+                class="form-control"
+                id="nomId"
+                type="text"
+                placeholder="Votre nom ici (obligatoire)"
+                formControlName="nom"
+                [ngClass]="{
+                  'is-valid':
+                    (problemeForm.get('nom').touched ||
+                      problemeForm.get('nom').dirty) &&
+                    problemeForm.get('nom').valid,
+                  'is-invalid':
+                    (problemeForm.get('nom').touched ||
+                      problemeForm.get('nom').dirty) &&
+                    !problemeForm.get('nom').valid
+                }"
+              />
+            </div>
+            <span
+            class="form-text"
+            *ngIf="
+              (problemeForm.get('nom').touched ||
+                problemeForm.get('nom').dirty) &&
+              problemeForm.get('nom').errors
+            "
+          >
+            <span *ngIf="problemeForm.get('nom').errors['required']">
+              <small class="text-muted">
+                Merci de saisir votre nom.
+              </small>
+            </span>
+            <span
+              *ngIf="
+                problemeForm.get('nom').errors['nbreCaracteresNonConforme']
+              "
+            >
+              <small class="text-muted">
+                Veuillez entrer moins de caractères.
+              </small>
+            </span>
+          </span>
+          </div>
+          <div class="form-group row">
+            <label for="noProblemeId" class="col-md-2 col-form-label text-right"
+              >Type de problème :</label
+            >
+            <div class="col-md-10">
+              <select
+              class="form-control"
+              id="noProblemeId"
+              formControlName="noProbleme"
+              [ngClass]="{
+                'is-valid':
+                  (problemeForm.get('noProbleme').touched ||
+                    problemeForm.get('noProbleme').dirty) &&
+                  problemeForm.get('noProbleme').valid,
+                'is-invalid':
+                  (problemeForm.get('noProbleme').touched ||
+                    problemeForm.get('noProbleme').dirty) &&
+                  !problemeForm.get('noProbleme').valid
+              }">
+              <option
+              value="">
+              Sélectionner un type de problème</option>
+              <option *ngFor="let prob of typesProbleme" [value]="prob.id">{{prob.descriptionTypeProbleme}}</option>
+
+              </select>
+            </div>
+            <span
+              class="form-text"
+              *ngIf="
+                (problemeForm.get('noProbleme').touched ||
+                  problemeForm.get('noProbleme').dirty) &&
+                problemeForm.get('noProbleme').errors
+              "
+            >
+              <span *ngIf="problemeForm.get('noProbleme').errors['required']">
+                <small class="text-muted">
+                  Merci de sélectionner une type de problème.
                 </small>
               </span>
             </span>
