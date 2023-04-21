@@ -4,6 +4,7 @@ import { VerifierCaracteresValidator } from '../shared/longueur-minimum/longueur
 import { VerifierMaxCaracteresValidator } from '../shared/longueur-maximum/longueur-maximum.component';
 import { ITypeProbleme } from './probleme';
 import { TypeproblemeService } from './typeprobleme.service';
+import { emailMatcherValidator } from '../shared/email-matcher/email-matcher.component';
 
 @Component({
   selector: 'Inter-probleme',
@@ -47,6 +48,7 @@ export class ProblemeComponent implements OnInit {
     );
   }
   appliquerNotifications(typeNotification: string): void {
+    const courrielGroupControl = this.problemeForm.get('courrielGroup');
     const courrielControl = this.problemeForm.get('courrielGroup.courriel');
     const telephoneControl = this.problemeForm.get('telephone');
     const courrielConfirmationControl = this.problemeForm.get(
@@ -65,18 +67,20 @@ export class ProblemeComponent implements OnInit {
     courrielConfirmationControl.disable();
 
     if (typeNotification === 'ParTelephone') {
-      telephoneControl.setValidators([Validators.required]);
+      telephoneControl.setValidators([Validators.required, Validators.pattern('\\d{10}')]);
       telephoneControl.enable();
     }
     if (typeNotification === 'ParCourriel') {
-      courrielConfirmationControl.setValidators([Validators.required]);
+      courrielConfirmationControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
       courrielConfirmationControl.enable();
-      courrielControl.setValidators([Validators.required]);
+      courrielControl.setValidators([Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);
       courrielControl.enable();
+      courrielGroupControl.setValidators(Validators.compose([emailMatcherValidator.courrielDifferents]));
     }
     telephoneControl.updateValueAndValidity();
     courrielControl.updateValueAndValidity();
     courrielConfirmationControl.updateValueAndValidity();
+    courrielGroupControl.updateValueAndValidity();
   }
   save(): void {}
 }
