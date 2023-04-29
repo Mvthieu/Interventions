@@ -115,17 +115,17 @@
             <div class="col-md-10">
               <select
                 class="form-control"
-                id="noProblemeId"
-                formControlName="noProbleme"
+                id="noTypeProblemeId"
+                formControlName="noTypeProbleme"
                 [ngClass]="{
                   'is-valid':
-                    (problemeForm.get('noProbleme').touched ||
-                      problemeForm.get('noProbleme').dirty) &&
-                    problemeForm.get('noProbleme').valid,
+                    (problemeForm.get('noTypeProbleme').touched ||
+                      problemeForm.get('noTypeProbleme').dirty) &&
+                    problemeForm.get('noTypeProbleme').valid,
                   'is-invalid':
-                    (problemeForm.get('noProbleme').touched ||
-                      problemeForm.get('noProbleme').dirty) &&
-                    !problemeForm.get('noProbleme').valid
+                    (problemeForm.get('noTypeProbleme').touched ||
+                      problemeForm.get('noTypeProbleme').dirty) &&
+                    !problemeForm.get('noTypeProbleme').valid
                 }"
               >
                 <option value="">Sélectionner un type de problème</option>
@@ -137,12 +137,12 @@
             <span
               class="form-text"
               *ngIf="
-                (problemeForm.get('noProbleme').touched ||
-                  problemeForm.get('noProbleme').dirty) &&
-                problemeForm.get('noProbleme').errors
+                (problemeForm.get('noTypeProbleme').touched ||
+                  problemeForm.get('noTypeProbleme').dirty) &&
+                problemeForm.get('noTypeProbleme').errors
               "
             >
-              <span *ngIf="problemeForm.get('noProbleme').errors['required']">
+              <span *ngIf="problemeForm.get('noTypeProbleme').errors['required']">
                 <small class="text-muted">
                   Merci de sélectionner une type de problème.
                 </small>
